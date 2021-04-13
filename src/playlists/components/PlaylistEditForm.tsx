@@ -1,12 +1,15 @@
 import React, { ChangeEvent, useEffect, useState } from 'react'
 import { Playlist } from '../../model/Playlist'
+import { PlaylistsView } from '../containers/PlaylistsView'
 
 interface Props {
     playlist: Playlist;
+    togglemode: any
+    onSave: any
 }
 
 
-export const PlaylistEditForm = ({ playlist }: Props) => {
+export const PlaylistEditForm = ({ playlist, togglemode, onSave }: Props) => {
     const [message, setMessage] = useState('')
     const [acceptNew, setAcceptNew] = useState(false)
 
@@ -24,11 +27,25 @@ export const PlaylistEditForm = ({ playlist }: Props) => {
                 setDescription(playlist.description)
                 setAcceptNew(false)
                 setMessage('')
+
+
             } else {
                 setMessage('Unsaved Changes')
             }
         }
     }, [playlist, acceptNew, playlistId])
+
+    const saveNewData = () => {
+        const updatedInfo =
+        {
+            id: playlistId,
+            name: name,
+            public: isPublic,
+            description: description
+        }
+        onSave(updatedInfo)
+    }
+
 
     return (
         <div>
@@ -53,11 +70,13 @@ export const PlaylistEditForm = ({ playlist }: Props) => {
                 <textarea className="form-control" value={description} onChange={e => setDescription(e.target.value)} ></textarea>
             </div>
 
-            <button className="btn btn-danger">Cancel</button>
-            <button className="btn btn-success">Save</button>
-        </div>
+            <button className="btn btn-danger" onClick={togglemode}>Cancel</button>
+            <button className="btn btn-success" onClick={saveNewData}>Save</button>
+        </div >
     )
 }
+
+
 
 
 

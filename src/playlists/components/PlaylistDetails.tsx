@@ -5,11 +5,15 @@ import styles from './PlaylistDetails.module.css'
 // console.log(styles)
 
 interface Props {
-    playlist: Playlist
+    playlist: Playlist,
+    togglemode: any
+
 }
 
+export const PlaylistDetails: React.FC<Props> = ({ playlist, togglemode, }) => {
 
-export const PlaylistDetails: React.FC<Props> = ({ playlist }) => {
+
+
     return (
         <div>
             <dl data-playlist-id={playlist.id}>
@@ -25,11 +29,21 @@ export const PlaylistDetails: React.FC<Props> = ({ playlist }) => {
                 <dt>Description:</dt>
                 <dd>{playlist.description}</dd>
             </dl>
-            
-            <button className="btn btn-edit">Edit</button>
+
+            <button
+                className="btn btn-edit"
+                // ja
+                onClick={togglemode}
+            >Edit</button>
+
         </div>
+
     )
 }
+
+// function setMode(arg0: string) {
+//     throw new Error('Function not implemented.');
+// }
 
 // PlaylistDetails.defaultProps = {
 //     playlist: {

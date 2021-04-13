@@ -1,5 +1,6 @@
 // tsrafc
 import React, { useEffect, useState } from 'react'
+import { ImportsNotUsedAsValues } from 'typescript'
 import { Playlist } from '../../model/Playlist'
 import { PlaylistDetails } from '../components/PlaylistDetails'
 import { PlaylistEditForm } from '../components/PlaylistEditForm'
@@ -14,33 +15,53 @@ const playlist = {
     description: 'Lubie placki'
 }
 
-const playlists: Playlist[] = [
+const playlistsData: Playlist[] = [
     {
         id: '123',
         name: 'Playlista 123',
         public: true,
-        description: 'Lubie placki'
+        description: 'Lubie nalesniki'
     },
     {
         id: '234',
         name: 'Playlista 234',
         public: false,
-        description: 'Lubie placki'
+        description: 'Lubie kotlety'
     },
     {
         id: '345',
         name: 'Playlista 345',
         public: true,
-        description: 'Lubie placki'
+        description: 'Lubie pulpety'
     },
 
 ]
 
-export const PlaylistsView = (props: Props) => {
+export const PlaylistsView = (onSave: Props) => {
     const [forceUpdate, setForceUpdate] = useState(Date.now())
     const [selectedId, setSelectedId] = useState<string | undefined>('234')
     const [selectedPlaylist, setSelectedPlaylist] = useState<Playlist | undefined>()
+    // ja:
+    // zmienna, metoda nadajaca wartosc, stan poczatkowy, a typescript mowi ze ma byc albo details albo form 
     const [mode, setMode] = useState<'details' | 'form'>('details')
+    const [playlists, setPlaylists] = useState(playlistsData)
+
+
+    //ja
+    // const switchToForm = () => {
+    //     setMode('form');
+    //     console.log('switchToForm')
+    // }
+
+    // const switchToDetails = () => {
+    //     setMode('details');
+    //     console.log('switchtodetails')
+    // }
+
+    const toggleMode = () => {
+        mode === 'details' ? setMode('form') : setMode('details');
+    }
+
 
     /* TODO:
         - Przycisk Edit w Details "przełącza" na formularza (*zmiana mode! props!)
@@ -55,12 +76,26 @@ export const PlaylistsView = (props: Props) => {
 
     const edit = () => {/*  */ }
     const cancel = () => {/*  */ }
-    const save = (draft: Playlist) => {
-        /* update playlistS!   */
-        const index = playlists.findIndex(p => p.id === draft.id)
-        if (index !== -1) {
-            playlists[index] = draft /// WRONG!! Mutable Code!
-        }
+    // const save = (draft: Playlist) => {
+    /* update playlistS!   */
+    // const index = playlists.findIndex(p => p.id === draft.id)
+    // if (index !== -1) {
+    //     playlists[index] = draft /// WRONG!! Mutable Code!
+    // }
+
+    // }
+
+    const savePlaylist = (updatedPlaylistData: Playlist) => {
+        //object object
+        console.log('updatedPlaylistData in Parent: ', updatedPlaylistData)
+        setSelectedPlaylist(updatedPlaylistData)
+
+        setPlaylists(
+            playlists.map(p =>
+                p.id == updatedPlaylistData.id ? updatedPlaylistData : p
+            ))
+
+        toggleMode()
     }
 
 
@@ -68,6 +103,8 @@ export const PlaylistsView = (props: Props) => {
         setSelectedPlaylist(playlists.find(p => p.id == selectedId))
 
     }, [selectedId, forceUpdate])
+
+
 
     return (
         <div>
@@ -88,9 +125,18 @@ export const PlaylistsView = (props: Props) => {
                 </div>
                 <div className="col">
 
-                    {selectedPlaylist && mode === 'details' && <PlaylistDetails playlist={selectedPlaylist} />}
+                    {selectedPlaylist && mode === 'details' && <PlaylistDetails
+                        playlist={selectedPlaylist}
+                        togglemode={toggleMode}
+                    // newdata={newData}
 
-                    {selectedPlaylist && mode === 'form' && <PlaylistEditForm playlist={selectedPlaylist} />}
+                    />}
+                    {selectedPlaylist && mode === 'form' && <PlaylistEditForm
+                        playlist={selectedPlaylist}
+                        togglemode={toggleMode}
+                        onSave={savePlaylist}
+                    />}
+
                 </div>
             </div>
         </div>
