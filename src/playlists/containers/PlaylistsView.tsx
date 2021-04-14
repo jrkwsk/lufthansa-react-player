@@ -80,9 +80,13 @@ export const PlaylistsView = (props: Props) => {
         setPlaylists(playlists)
         setMode('default')
     }
+    const remove = (playlistToRemove: Playlist) => {
+        setPlaylists(playlists.filter(p => p.id !== playlistToRemove.id))
+        console.log('remove')
+    }
 
     useEffect(() => {
-        //nie dziala
+        //nie dziala do pomyslenia
         selectedId ? setMode('details') : setMode('default')
 
         setSelectedPlaylist(playlists.find(p => p.id == selectedId))
@@ -98,7 +102,8 @@ export const PlaylistsView = (props: Props) => {
                     <PlaylistList
                         onSelected={id => { setSelectedId(id) }}
                         playlists={playlists}
-                        selectedId={selectedId} />
+                        selectedId={selectedId}
+                        remove={remove} />
 
                     <button className="btn btn-info btn-block mt-4" onClick={create}>Create New Playlist</button>
                 </div>

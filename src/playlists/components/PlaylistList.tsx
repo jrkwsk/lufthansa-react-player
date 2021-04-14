@@ -5,9 +5,10 @@ interface Props {
     playlists: Playlist[]
     selectedId?: string
     onSelected(id: string): void
+    remove(playlist: Playlist): any
 }
 
-export const PlaylistList = ({ playlists, selectedId, onSelected }: Props) => {
+export const PlaylistList = ({ playlists, selectedId, onSelected, remove }: Props) => {
 
     return (
         <div>
@@ -18,7 +19,7 @@ export const PlaylistList = ({ playlists, selectedId, onSelected }: Props) => {
                         key={playlist.id}>
                         {playlist.name}
 
-                        <span className="close">&times;</span>
+                        <span className="close" onClick={() => remove(playlist)}>&times;</span>
                     </div>
                 )}
             </div>

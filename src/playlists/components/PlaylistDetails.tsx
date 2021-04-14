@@ -23,7 +23,7 @@ export const PlaylistDetails: React.FC<Props> = ({ playlist, edit }) => {
                 <dt>Description:</dt>
                 <dd>{playlist.description}</dd>
             </dl>
-            
+
             <button className="btn btn-danger" onClick={edit}>Edit</button>
         </div>
     )

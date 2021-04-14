@@ -18,9 +18,9 @@ export const PlaylistEditForm = ({ playlist, cancel, save }: Props) => {
 
     const submitForm = () => {
         save({
-            id: playlistId, 
-            name: name, 
-            public: isPublic, 
+            id: playlistId,
+            name: name,
+            public: isPublic,
             description: description
         })
     }
@@ -45,7 +45,7 @@ export const PlaylistEditForm = ({ playlist, cancel, save }: Props) => {
             <h3>PlaylistEditForm</h3>
 
             {message && <div className="alert alert-danger">{message} <button onClick={() => setAcceptNew(true)}>OK</button></div>}
-            
+
             <div className="form-group">
                 <label>Name:</label>
                 <input type="text" className="form-control" value={name}
