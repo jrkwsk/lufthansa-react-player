@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react'
 import { Playlist } from '../../model/Playlist'
 import { PlaylistDetails } from '../components/PlaylistDetails'
 import { PlaylistEditForm } from '../components/PlaylistEditForm'
+import { NewPlaylistForm } from '../components/NewPlaylistForm'
 import { PlaylistList } from '../components/PlaylistList'
 
 interface Props { }
@@ -62,6 +63,10 @@ export const PlaylistsView = (props: Props) => {
     const cancel = () => {
         setMode('details')
     }
+
+    const returntodefault = () => {
+        setMode('default')
+    }
     const save = (draft: Playlist) => {
         setMode('details')
         setPlaylists(playlists.map(p => p.id === draft.id ? draft : p))
@@ -102,6 +107,9 @@ export const PlaylistsView = (props: Props) => {
                         cancel={cancel} />}
                     {/*nie dziala*/}
                     {mode === 'default' && <div className="alert alert-info">Please select playlist</div>}
+                    {mode === 'new' && <NewPlaylistForm
+                        returntodefault={returntodefault} />}
+
                 </div>
             </div>
         </div>
