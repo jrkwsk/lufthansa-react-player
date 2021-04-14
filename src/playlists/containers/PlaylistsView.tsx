@@ -32,7 +32,7 @@ const data: Playlist[] = [
 export const PlaylistsView = (props: Props) => {
     const [selectedId, setSelectedId] = useState<string | undefined>()
     const [selectedPlaylist, setSelectedPlaylist] = useState<Playlist | undefined>()
-    const [mode, setMode] = useState<'details' | 'form'>('details')
+    const [mode, setMode] = useState<'details' | 'form' | 'default' | 'new'>('default')
     const [playlists, setPlaylists] = useState<Playlist[]>(data)
 
     /* TODO:
@@ -66,9 +66,17 @@ export const PlaylistsView = (props: Props) => {
         setMode('details')
         setPlaylists(playlists.map(p => p.id === draft.id ? draft : p))
     }
+    const create = () => {
+        setMode('new')
+        console.log('new')
+    }
 
     useEffect(() => {
+        //nie dziala
+        selectedId ? setMode('details') : setMode('default')
+
         setSelectedPlaylist(playlists.find(p => p.id == selectedId))
+
     }, [selectedId, playlists])
 
     return (
@@ -82,7 +90,7 @@ export const PlaylistsView = (props: Props) => {
                         playlists={playlists}
                         selectedId={selectedId} />
 
-                    <button className="btn btn-info btn-block mt-4">Create New Playlist</button>
+                    <button className="btn btn-info btn-block mt-4" onClick={create}>Create New Playlist</button>
                 </div>
                 <div className="col">
                     {selectedPlaylist && mode === 'details' && <PlaylistDetails
@@ -92,8 +100,8 @@ export const PlaylistsView = (props: Props) => {
                         save={save}
                         playlist={selectedPlaylist}
                         cancel={cancel} />}
-
-                        <div className="alert alert-info">Please select playlist</div>
+                    {/*nie dziala*/}
+                    {mode === 'default' && <div className="alert alert-info">Please select playlist</div>}
                 </div>
             </div>
         </div>
