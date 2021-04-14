@@ -63,7 +63,6 @@ export const PlaylistsView = (props: Props) => {
     const cancel = () => {
         setMode('details')
     }
-
     const returntodefault = () => {
         setMode('default')
     }
@@ -74,6 +73,12 @@ export const PlaylistsView = (props: Props) => {
     const create = () => {
         setMode('new')
         console.log('new')
+    }
+    const saveNew = (newdraft: Playlist) => {
+        console.log(newdraft)
+        playlists.push(newdraft)
+        setPlaylists(playlists)
+        setMode('default')
     }
 
     useEffect(() => {
@@ -108,7 +113,8 @@ export const PlaylistsView = (props: Props) => {
                     {/*nie dziala*/}
                     {mode === 'default' && <div className="alert alert-info">Please select playlist</div>}
                     {mode === 'new' && <NewPlaylistForm
-                        returntodefault={returntodefault} />}
+                        returntodefault={returntodefault}
+                        savenew={saveNew} />}
 
                 </div>
             </div>
