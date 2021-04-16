@@ -80,13 +80,14 @@ export const PlaylistsView = (props: Props) => {
         setPlaylists(playlists)
         setMode('default')
     }
+
+    //przekazujemy caly obiekt, lepiej przekazywac samo id, popraw w wolnej chwili 
     const remove = (playlistToRemove: Playlist) => {
         setPlaylists(playlists.filter(p => p.id !== playlistToRemove.id))
         console.log('remove')
     }
 
     useEffect(() => {
-        //nie dziala do pomyslenia (propagation) 
         selectedId ? setMode('details') : setMode('default')
 
         setSelectedPlaylist(playlists.find(p => p.id == selectedId))
@@ -100,7 +101,8 @@ export const PlaylistsView = (props: Props) => {
             <div className="row">
                 <div className="col">
                     <PlaylistList
-                        onSelected={id => { setSelectedId(id) }}
+                        // { /*jesli id nie jest selected to ustaw id na selectedid, else ustaw selectedid na undefined */}
+                        onSelected={!selectedId ? (id) => setSelectedId(id) : (id) => setSelectedId(undefined)}
                         playlists={playlists}
                         selectedId={selectedId}
                         remove={remove} />
@@ -115,7 +117,7 @@ export const PlaylistsView = (props: Props) => {
                         save={save}
                         playlist={selectedPlaylist}
                         cancel={cancel} />}
-                    {/* !selectedId zamiast mode === default*/}
+                    {/* !selectedId do sprobowania zamiast mode === default*/}
 
                     {mode === 'default' && <div className="alert alert-info">Please select playlist</div>}
                     {mode === 'new' && <NewPlaylistForm

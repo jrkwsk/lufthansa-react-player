@@ -1,5 +1,3 @@
-import { version } from 'node:punycode'
-import React, { useState } from 'react'
 import { Playlist } from '../../model/Playlist'
 
 interface Props {
@@ -20,7 +18,7 @@ export const PlaylistList = ({ playlists, selectedId, onSelected, remove }: Prop
                         key={playlist.id}>
                         {playlist.name}
 
-                        <span className="close" onClick={(event) => { event.stopPropagation(); remove(playlist) }}>&times;</span>
+                        <span className="close btn" onClick={(event) => { event.stopPropagation(); remove(playlist) }}>&times;</span>
 
                     </div>
                 )}
