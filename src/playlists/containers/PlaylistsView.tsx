@@ -86,7 +86,7 @@ export const PlaylistsView = (props: Props) => {
     }
 
     useEffect(() => {
-        //nie dziala do pomyslenia
+        //nie dziala do pomyslenia (propagation) 
         selectedId ? setMode('details') : setMode('default')
 
         setSelectedPlaylist(playlists.find(p => p.id == selectedId))
@@ -115,7 +115,8 @@ export const PlaylistsView = (props: Props) => {
                         save={save}
                         playlist={selectedPlaylist}
                         cancel={cancel} />}
-                    {/*nie dziala*/}
+                    {/* !selectedId zamiast mode === default*/}
+
                     {mode === 'default' && <div className="alert alert-info">Please select playlist</div>}
                     {mode === 'new' && <NewPlaylistForm
                         returntodefault={returntodefault}

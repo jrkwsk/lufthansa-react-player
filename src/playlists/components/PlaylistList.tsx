@@ -1,3 +1,4 @@
+import { version } from 'node:punycode'
 import React, { useState } from 'react'
 import { Playlist } from '../../model/Playlist'
 
@@ -19,7 +20,8 @@ export const PlaylistList = ({ playlists, selectedId, onSelected, remove }: Prop
                         key={playlist.id}>
                         {playlist.name}
 
-                        <span className="close" onClick={() => remove(playlist)}>&times;</span>
+                        <span className="close" onClick={(event) => { event.stopPropagation(); remove(playlist) }}>&times;</span>
+
                     </div>
                 )}
             </div>
