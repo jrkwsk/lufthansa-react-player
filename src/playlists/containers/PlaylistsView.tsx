@@ -84,7 +84,6 @@ export const PlaylistsView = (props: Props) => {
     //przekazujemy caly obiekt, lepiej przekazywac samo id, popraw w wolnej chwili 
     const remove = (playlistToRemove: Playlist) => {
         setPlaylists(playlists.filter(p => p.id !== playlistToRemove.id))
-        console.log('remove')
     }
 
     useEffect(() => {
@@ -120,6 +119,7 @@ export const PlaylistsView = (props: Props) => {
                     {/* !selectedId do sprobowania zamiast mode === default*/}
 
                     {mode === 'default' && <div className="alert alert-info">Please select playlist</div>}
+
                     {mode === 'new' && <NewPlaylistForm
                         returntodefault={returntodefault}
                         savenew={saveNew} />}
