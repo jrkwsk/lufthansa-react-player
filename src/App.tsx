@@ -11,6 +11,8 @@ import 'bootstrap/dist/css/bootstrap.css'
 function App() {
 
   const [mode, setMode] = useState('showPlaylists')
+  // const [isActiveTab, setIsActiveTab] = useState(false)
+  const [selectedTab, setSelectedTab] = useState('0')
 
   const tabs = [
     { tabText: 'Show playlists', mode: 'showPlaylists' },
@@ -19,16 +21,27 @@ function App() {
     { tabText: 'Search for albums', mode: 'searchForAlbums' }
   ]
 
+  //   useEffect(() => {
+
+  //     { mode === 'showPlaylists' && }
+  //     { mode === 'searchForMusic' && }
+  //     { mode === 'searchForAlbums' && }
+  //     { mode === 'searchForArtists' && }
+
+  //     )
+  // }
+
+
   return (
     <div>
-      <ul className="nav nav-tabs nav-fill">
+      <ul className="nav nav-tabs nav-pills nav-fill">
         {tabs.map(tab =>
           <li className="nav-item">
             <a
-              className="nav-link btn"
+              className={mode === tab.mode ? "nav-link btn active" : "nav-link btn"}
               key={tab.mode}
-              onClick={() => setMode(tab.mode)
-              }>
+              onClick={() => setMode(tab.mode)}
+            >
               {tab.tabText}</a>
           </li>
         )}
