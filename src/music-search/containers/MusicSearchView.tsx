@@ -1,10 +1,12 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Album, AlbumView } from '../../model/Search'
 import { AlbumGrid } from '../components/AlbumGrid'
 import { SearchForm } from '../components/SearchForm'
 import { useSearchAlbums } from '../../core/hooks/useSearchAlbums'
 
-interface Props { }
+interface Props {
+    searchType: string;
+}
 
 const albumsMock: AlbumView[] = [
     { id: "123", name: "Album 123", type: "album", images: [{ height: 300, width: 300, url: "https://www.placecage.com/c/300/300" }] },
@@ -15,7 +17,8 @@ const albumsMock: AlbumView[] = [
 
 /* TODO:
     - W AppComponent - przelaczane widoki jako zakladki do wyboru - "Szukaj Albumow" i "Szukaj Artystow" 
-    ( + opcjonalnie zakladka "Playlisty" z PlaylistView ) https://getbootstrap.com/docs/4.6/components/navs/#tabs
+        ( + opcjonalnie zakladka "Playlisty" z PlaylistView ) https://getbootstrap.com/docs/4.6/components/navs/#tabs
+    
     - Wyszukiwarka Artystow - {"q": "Bon Jovi", "type":"artist"}
     - Wykorzystaj ponownie Formularz wyszukiwania na nowym ekranie!
     - Wyniki w formie Card Grid lub Table lub list... (dowolnie)
@@ -29,7 +32,7 @@ const albumsMock: AlbumView[] = [
     - https://developer.spotify.com/documentation/web-api/reference/#endpoint-search
 */
 
-export const MusicSearchView = (props: Props) => {
+export const MusicSearchView = (searchType: Props) => {
     // const { searchAlbums, isLoading, message, results } = useSearchAlbums('http://localhost:3000/data/albums.json')
     const {
         searchAlbums,
@@ -38,8 +41,12 @@ export const MusicSearchView = (props: Props) => {
         results
     } = useSearchAlbums('https://api.spotify.com/v1/search')
 
+    console.log(typeof searchType)
+    console.log(searchType)
+
     return (
         <div>
+            <h2>{searchType.searchType === 'searchForAlbums' ? "Szukaj albumów" : "Szukaj artystów"}</h2>
             <div className="row">
                 <div className="col">
                     <SearchForm onSearch={searchAlbums} />
