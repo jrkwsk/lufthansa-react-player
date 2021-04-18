@@ -1,16 +1,17 @@
 import React from 'react'
 
 interface Props {
-
+    titleForAlbum: string,
+    imageForAlbum: string
 }
 
-export const AlbumCard = (props: Props) => {
+export const AlbumCard = (titleForAlbum, imageForAlbum: Props) => {
     return (
         <div className="card h-100">
-            <img src="https://www.placecage.com/c/300/300" className="card-img-top" alt="..." />
+            <img src={imageForAlbum} className="card-img-top" alt="..." />
 
             <div className="card-body">
-                <h5 className="card-title">Album title</h5>
+                <h5 className="card-title">{titleForAlbum}</h5>
             </div>
         </div>
     )

@@ -31,7 +31,7 @@ export const MusicSearchView = (props: Props) => {
             </div>
             <div className="row">
                 <div className="col">
-                    <AlbumGrid />
+                    <AlbumGrid albumsMock={albumsMock} />
                 </div>
             </div>
         </div>
