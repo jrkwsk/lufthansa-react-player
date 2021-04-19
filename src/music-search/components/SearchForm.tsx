@@ -11,7 +11,7 @@ export const SearchForm = ({ onSearch, searchFormVariant }: Props) => {
     return (
         <div>
             <div className="input-group mb-3">
-                <input type="text" className="form-control" placeholder={searchFormVariant}
+                <input type="text" className="form-control" placeholder={searchFormVariant === "searchForAlbums" ? "Type album name here" : "Type artist name here"}
                     onChange={e => setQuery(e.target.value)}
                     onKeyUp={e => e.code === 'Enter' && onSearch(query)}
                 />
