@@ -11,7 +11,7 @@ export const AlbumCard = ({ album }: Props) => {
             <img src={album.images[0].url} className="card-img-top" alt={album.name} />
 
             <div className="card-body">
-                <h5 className="card-title">{album.name}</h5>
+                <h5 className="card-title">Album: {album.name}</h5>
             </div>
         </div>
     )
