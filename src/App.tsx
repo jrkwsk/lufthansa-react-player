@@ -32,24 +32,25 @@ function App() {
 
   return (
     <div>
-      <ul className="nav nav-tabs nav-pills nav-fill">
-        {tabs.map(tab =>
-          <li className="nav-item">
-            <a
-              className={mode === tab.mode ? "nav-link btn active" : "nav-link btn"}
-              key={tab.mode}
-              onClick={() => setMode(tab.mode)}
-            >
-              {tab.tabText}</a>
-          </li>
-        )}
-      </ul>
-      {/* .container>.row>.col */}
       <div className="container">
         <div className="row">
           <div className="col">
 
             <h1>MusicApp</h1>
+            <ul className="nav nav-tabs nav-pills nav-fill">
+              {tabs.map(tab =>
+                <li className="nav-item">
+                  <a
+                    className={mode === tab.mode ? "nav-link btn btn-info active" : "nav-link btn"}
+                    key={tab.mode}
+                    onClick={() => setMode(tab.mode)}
+                  >
+                    {tab.tabText}</a>
+                </li>
+              )}
+            </ul>
+            {/* .container>.row>.col */}
+
 
             {mode === 'showPlaylists' && <PlaylistsView />}
             {mode === 'searchForAlbums' && <MusicSearchView searchType={mode} />}

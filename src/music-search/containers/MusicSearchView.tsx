@@ -20,7 +20,9 @@ const albumsMock: AlbumView[] = [
         ( + opcjonalnie zakladka "Playlisty" z PlaylistView ) https://getbootstrap.com/docs/4.6/components/navs/#tabs
     
     - Wyszukiwarka Artystow - {"q": "Bon Jovi", "type":"artist"}
+
     - Wykorzystaj ponownie Formularz wyszukiwania na nowym ekranie!
+
     - Wyniki w formie Card Grid lub Table lub list... (dowolnie)
     
     // Konto Spotify:
@@ -32,7 +34,7 @@ const albumsMock: AlbumView[] = [
     - https://developer.spotify.com/documentation/web-api/reference/#endpoint-search
 */
 
-export const MusicSearchView = (searchType: Props) => {
+export const MusicSearchView = ({ searchType }: Props) => {
     // const { searchAlbums, isLoading, message, results } = useSearchAlbums('http://localhost:3000/data/albums.json')
     const {
         searchAlbums,
@@ -41,21 +43,23 @@ export const MusicSearchView = (searchType: Props) => {
         results
     } = useSearchAlbums('https://api.spotify.com/v1/search')
 
-    console.log(typeof searchType)
-    console.log(searchType)
-
     return (
         <div>
-            <h2>{searchType.searchType === 'searchForAlbums' ? "Szukaj albumów" : "Szukaj artystów"}</h2>
             <div className="row">
                 <div className="col">
-                    <SearchForm onSearch={searchAlbums} />
+                    <p className="mt-5">{searchType === 'searchForAlbums' ? "Type album name here" : "Type artist name here"}</p>
+
+                    <SearchForm
+                        onSearch={searchAlbums}
+                        searchFormVariant={searchType} />
                 </div>
             </div>
             <div className="row">
                 <div className="col">
                     {isLoading && <p className="alert alert-info">Loading</p>}
                     {message && <p className="alert alert-danger">{message}</p>}
+
+
 
                     <AlbumGrid albums={results} />
                 </div>
