@@ -1,17 +1,17 @@
 import React from 'react'
+import { AlbumView, Album } from '../../model/Search'
 
 interface Props {
-    titleForAlbum: string,
-    imageForAlbum: string
+    albums: AlbumView
 }
 
-export const AlbumCard = (titleForAlbum, imageForAlbum: Props) => {
+export const AlbumCard = ({ albums }: Props) => {
     return (
-        <div className="card h-100">
-            <img src={imageForAlbum} className="card-img-top" alt="..." />
+        <div className="card h-30 text-center">
+            <img src={albums.images[0]?.url} className="card-img-top" alt="..." />
 
             <div className="card-body">
-                <h5 className="card-title">{titleForAlbum}</h5>
+                <h5 className="card-title">{albums.name}</h5>
             </div>
         </div>
     )

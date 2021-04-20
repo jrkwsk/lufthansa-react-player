@@ -5,7 +5,7 @@ import { SearchForm } from '../components/SearchForm'
 
 interface Props { }
 
-const albumsMock: AlbumView[] = [
+const albumsMock: AlbumView[] | Album[] = [
     { id: '123', name: 'Album 123', type: 'album', images: [{ height: 300, width: 300, url: 'https://www.placecage.com/c/300/300' }] },
     { id: '234', name: 'Album 234', type: 'album', images: [{ height: 300, width: 300, url: 'https://www.placecage.com/c/400/400' }] },
     { id: '345', name: 'Album 345', type: 'album', images: [{ height: 300, width: 300, url: 'https://www.placecage.com/c/500/500' }] },

@@ -6,39 +6,39 @@ export interface AlbumsResponse {
 }
 
 export interface AlbumView {
-    id:                     string;
-    images:                 Image[];
-    name:                   string;
-    type:                   'album';
+    id: string;
+    images: Image[];
+    name: string;
+    type: 'album';
 }
 
 export interface Album {
-    id:                     string;
-    images:                 Image[];
-    name:                   string;
-    type:                   'album';
-    album_type:             string;
-    artists:                Artist[];
-    available_markets:      string[];
-    copyrights:             Copyright[];
-    external_ids:           ExternalIDS;
-    external_urls:          ExternalUrls;
-    genres:                 any[];
-    href:                   string;
-    popularity:             number;
-    release_date:           string;
+    id: string;
+    images: Image[];
+    name: string;
+    type: 'album';
+    album_type: string;
+    artists: Artist[];
+    available_markets: string[];
+    copyrights: Copyright[];
+    external_ids: ExternalIDS;
+    external_urls: ExternalUrls;
+    genres: any[];
+    href: string;
+    popularity: number;
+    release_date: string;
     release_date_precision: string;
-    tracks:                 PagingObject<Track>;
-    uri:                    string;
+    tracks: PagingObject<Track>;
+    uri: string;
 }
 
 export interface Artist {
     external_urls: ExternalUrls;
-    href:          string;
-    id:            string;
-    name:          string;
-    type:          string;
-    uri:           string;
+    href: string;
+    id: string;
+    name: string;
+    type: string;
+    uri: string;
 }
 
 export interface ExternalUrls {
@@ -56,33 +56,33 @@ export interface ExternalIDS {
 
 export interface Image {
     height: number;
-    url:    string;
-    width:  number;
+    url: string;
+    width: number;
 }
 
 /* PagingObject<Artist>, PagingObject<Album>, PagingObject<... > */
 export interface PagingObject<T> {
-    href:     string;
-    items:    T[];
-    limit:    number;
-    next:     null;
-    offset:   number;
+    href: string;
+    items: T[];
+    limit: number;
+    next: null;
+    offset: number;
     previous: null;
-    total:    number;
+    total: number;
 }
 
 export interface Track {
-    id:                string;
-    name:              string;
-    type:              'track';
-    artists:           Artist[];
+    id: string;
+    name: string;
+    type: 'track';
+    artists: Artist[];
     available_markets: string[];
-    disc_number:       number;
-    duration_ms:       number;
-    explicit:          boolean;
-    external_urls:     ExternalUrls;
-    href:              string;
-    preview_url:       string;
-    track_number:      number;
-    uri:               string;
+    disc_number: number;
+    duration_ms: number;
+    explicit: boolean;
+    external_urls: ExternalUrls;
+    href: string;
+    preview_url: string;
+    track_number: number;
+    uri: string;
 }
