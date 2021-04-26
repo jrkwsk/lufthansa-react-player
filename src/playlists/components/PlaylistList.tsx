@@ -4,7 +4,7 @@ import { Playlist } from '../../model/Playlist'
 interface Props {
     playlists: Playlist[]
     selectedId?: string
-    onSelected(id: string): void 
+    onSelected(id: string): void
     onRemove(id: Playlist['id']): void
 }
 
@@ -19,7 +19,9 @@ export const PlaylistList = React.memo(({
                     <div className={`list-group-item ${selectedId === playlist.id ? 'active' : ''}`}
                         data-playlist-id={playlist.id}
                         onClick={() => { onSelected(playlist.id) }}
-                        key={playlist.id}>
+                        key={playlist.id}
+                        data-testid="playlist_item"
+                    >
 
                         <span>{playlist.name}</span>
 
