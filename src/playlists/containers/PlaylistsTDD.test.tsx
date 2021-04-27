@@ -1,12 +1,11 @@
-import { fireEvent, render, screen } from "@testing-library/react"
+import { fireEvent, render, screen, act } from "@testing-library/react"
 import userEvent from "@testing-library/user-event"
-import { act } from "react-dom/test-utils"
+import axios from "axios"
 import { Playlist } from "../../model/Playlist"
 import { PlaylistsTDD } from "./PlaylistsTDD"
+import { fetchData } from './';
 
-import { PlaylistList } from "../components/PlaylistList"
-
-
+jest.mock('axios');
 
 describe('PlaylistsTDD', () => {
 
@@ -17,42 +16,38 @@ describe('PlaylistsTDD', () => {
 
     });
 
-    // test('shows list of mock playlists', () => {
+    test('shows list of mock playlists', async () => {
+        const data = {
+            data: {
+                playlits: [
+                    {
+                        id: '123',
+                        name: 'Playlista 😇',
+                        public: true,
+                        description: 'no i co ja dzis polubie?..🤔'
+                    },
+                    {
+                        id: '234',
+                        name: 'Playlista 😁',
+                        public: false,
+                        description: 'moze polubię TypeScript?. 🚀'
+                    },
+                    {
+                        id: '345',
+                        name: 'Playlista 😆',
+                        public: true,
+                        description: 'albo wszystko polubię co mi tam 😅💖'
+                    },
+                ],
+            },
+        };
 
-    //     // act(() => {
-    //     const mockPlaylists: Playlist[] = [
-    //         {
-    //             id: '111',
-    //             name: 'Playlista 111',
-    //             public: true,
-    //             description: '111 xxx 111'
-    //         },
-    //         {
-    //             id: '222',
-    //             name: 'Playlista 222',
-    //             public: false,
-    //             description: '222 xxx 333'
-    //         }
-    //     ]
+        axios.get.mockImplementationOnce(() => Promise.resolve(data))
+        await expect(fetchData('react')).resolves.toEqual(data);
 
-    //     const selectSpy = jest.fn()
-    //     const removeSpy = jest.fn();
-
-    //     render(<PlaylistList playlists={mockPlaylists} onSelected={selectSpy} onRemove={removeSpy} />)
-    //     // render(<PlaylistsTDD />)
-
-    //     const listItems = screen.getAllByTestId('playlist_item')
-    //     expect(listItems[0]).toHaveTextContent('111')
-    //     expect(listItems[1]).toHaveTextContent('222')
-    //     expect(listItems).toHaveLength(2)
-    //     // })
-
-    //     //promise:
-    //     // const listItems = screen.findAllByTestId('playlist_item')
-    //     // expect(listItems).toHaveLength(3)
+    });
 
 
-    // });
 
 
     test('shows list of no playlists', () => {
