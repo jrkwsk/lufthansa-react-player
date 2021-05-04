@@ -1,17 +1,33 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import { fetchPlaylists } from '../../core/hooks/usePlaylists'
 import { Playlist } from '../../model/Playlist'
 import styles from './PlaylistDetails.module.css'
 
 interface Props {
-    playlist: Playlist;
+    // playlist: Playlist;
     edit: () => void
 }
 
 
-export const PlaylistDetails: React.FC<Props> = ({
-    playlist,
+export const PlaylistDetailsTDD: React.FC<Props> = ({
+    // playlist,
     edit
 }) => {
+
+    const [playlist, setPlaylist] = useState({
+        id: 'string',
+        name: 'string',
+        public: true,
+        description: 'string'
+    })
+
+    useEffect(() => {
+        fetchPlaylists().then(res => {
+            setPlaylist(res)
+        })
+
+    }, []
+    )
 
     return (
         <div>

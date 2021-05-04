@@ -1,7 +1,9 @@
-import { act, render, screen, waitFor } from "@testing-library/react";
-import { promises } from "node:dns";
-import { useFetch } from "../../core/hooks/useFetch";
-import { fetchPlaylists } from "../../core/hooks/usePlaylists";
+import { fireEvent, render, screen } from "@testing-library/react";
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+// import axios from 'axios'
+// import { promises } from "node:dns";
+// import { useFetch } from "../../core/hooks/useFetch";
+// import { fetchPlaylists } from "../../core/hooks/usePlaylists";
 import { Playlist } from "../../model/Playlist";
 import { PlaylistsTDD } from "./PlaylistsTDD";
 
@@ -23,7 +25,10 @@ describe('PlaylistsTDD', () => {
             ];
             ctx.delay(500)
             return res(ctx.json(mockPlaylists))
-        }),
+        }
+
+
+        ),
         // https://mswjs.io/docs/basics/request-matching
         // GET https://api.spotify.com/v1/playlists/:playlist_id
         // req.params.playlist_id
@@ -53,7 +58,7 @@ describe('PlaylistsTDD', () => {
         setup()
         const noItems = screen.queryAllByRole('listitem', {})
         expect(noItems).toHaveLength(0)
-        
+
         // Assert - Then ... // Shows list of playlists
         const items = await screen.findAllByRole('listitem', {})
 
@@ -64,20 +69,14 @@ describe('PlaylistsTDD', () => {
 
     // test.todo('shows list of no playlists')
 
-    test.todo('selecting playlist from list loads details')
+    test('selecting playlist from list loads details', async () => {
+        fireEvent.click(screen.queryAllByRole('listitem')[0]);
+        expect(screen.getByRole('heading')).toHaveTextContent('Details');
+    })
 
-    test.todo('clicking edit in details show edit form')
+    // test.todo('clicking edit in details show edit form')
 
-    test.todo('saving form changes updates list and details')
+    // test.todo('saving form changes updates list and details')
 
-    // test('Function adds numbers', () => {
-    //     const add = (x:number, y:number) => 5;
 
-    //     expect(add(2, 3)).toEqual(5)
-    // })
-
-    /* 
-
-    
-    */
 })

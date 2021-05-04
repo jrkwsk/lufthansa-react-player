@@ -1,28 +1,39 @@
 import React, { useEffect, useState } from 'react'
 import { fetchPlaylists } from '../../core/hooks/usePlaylists'
 import { Playlist } from '../../model/Playlist'
-import { PlaylistList } from '../components/PlaylistList'
+import { PlaylistDetailsTDD } from '../components/PlaylistDetailsTDD'
+import { PlaylistListTDD } from '../components/PlaylistListTDD'
 
 interface Props {
 
 }
 
+const firstPlaylist = [{}, {}, {}]
+
 export const PlaylistsTDD = (props: Props) => {
-    const [playlists, setPlaylists] = useState<Playlist[]>([])
+    const [mode, setMode] = useState('default')
+    const [playlists, setPlaylists] = useState(firstPlaylist)
+
+
+    const changeModetoDetails = () => {
+        setMode('details')
+    }
 
     useEffect(() => {
         fetchPlaylists().then(res => {
             setPlaylists(res)
         })
-    }, [])
+
+    }, []
+    )
 
     return (
         <div>
 
-            <PlaylistList playlists={playlists}
-                onRemove={() => { }}
-                onSelected={() => { }}
+            <PlaylistListTDD playlists={playlists}
             />
+
+            {mode === 'details' && <PlaylistDetailsTDD />}
 
         </div>
     )
