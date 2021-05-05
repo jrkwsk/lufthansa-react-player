@@ -34,6 +34,14 @@ export const DragAndDrop = (props: Props) => {
 
                     </ul>
                 </div>
+                <div className="col p-5 m-5 border">
+                    <h2>dshf</h2>
+                    <ul className="list-group" id="done-list">
+                        {done.map(el => <li className="list-group-item" key={el}>{el}</li>)}
+
+
+                    </ul>
+                </div>
             </div>
         </div>
     )
