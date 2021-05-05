@@ -5,6 +5,7 @@ import { PlaylistsView } from './playlists/containers/PlaylistsView';
 import 'bootstrap/dist/css/bootstrap.css'
 import { MusicSearchView } from './music-search/containers/MusicSearchView';
 import { PlaylistsTDD } from './playlists/containers/PlaylistsTDD';
+import { DragAndDrop } from './playlists/components/DragAndDrop';
 
 function App() {
   return (
@@ -15,8 +16,8 @@ function App() {
           <div className="col">
 
             <h1>MusicApp</h1>
-
-<PlaylistsTDD/>
+            <DragAndDrop />
+            {/* <PlaylistsTDD/> */}
             {/* <PlaylistsView /> */}
             {/* <MusicSearchView/> */}
           </div>
