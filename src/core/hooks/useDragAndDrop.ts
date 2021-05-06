@@ -2,39 +2,44 @@
 //dodaje eventlistener do elementów listy na dragstart / dragend
 // zmienia state todo i done
 
-import { useEffect } from "react"
+import { useEffect, useRef, useState } from "react"
 // import styles from './DragAndDrop.module.css'
 
 
-export const useDragAndDrop = (classOfContainer: string) => {
+export const useDragAndDrop = (initialState: string[]) => {
+    const [items, setItems] = useState(initialState)
+    const ref = useRef(null)
 
     useEffect(() => {
+        if (!ref.current) { return }
         //selects element to be container
-        const dragAreas = document.querySelectorAll(classOfContainer);
+        const area = ref.current as unknown as HTMLElement;
         //selects all children to make them dragable
-        const dragItems = document.querySelectorAll(`${classOfContainer} > *`);
+        const dragItems = (ref.current as unknown as HTMLElement).children;
 
-        dragItems.forEach(item => {
+        [...dragItems].forEach(item => {
             item.setAttribute('draggable', 'true');
             item.addEventListener('dragstart', () => { item.classList.add('currently-dragging') });
             item.addEventListener('dragend', () => { item.classList.remove('currently-dragging') });
         })
 
-        dragAreas.forEach(area => {
-            area.classList.add('drag-area');
 
-            area.addEventListener('dragover', (e) => {
-                e.preventDefault();
-                let draggedItem = document.querySelector('.currently-dragging');
-                if (draggedItem) {
-                    area.appendChild(draggedItem);
-                }
-            })
-        }
+        area.classList.add('drag-area');
+        area.addEventListener('dragover', (e) => {
+            e.preventDefault();
+        })
 
-        );
+        area.addEventListener('drop', (e) => {
+            let draggedItem = document.querySelector('.currently-dragging');
+            if (draggedItem) {
+                setItems(items => [...items, (draggedItem as HTMLElement).dataset['item']!])
+            }
+        })
 
-    }, [classOfContainer])
+
+    }, [])
+
+    return { items, ref }
 
 
 }
