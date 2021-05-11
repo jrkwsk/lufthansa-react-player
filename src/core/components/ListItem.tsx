@@ -5,7 +5,7 @@ interface Props {
 
 }
 
-export const MyListItem = ({ myColors: { id, color, value, mode } }) => {
+export const ListItem = ({ myColors: { id, color, value, mode } }) => {
 
 
 

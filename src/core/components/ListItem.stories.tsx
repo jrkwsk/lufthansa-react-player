@@ -1,8 +1,8 @@
 import React from 'react';
-import { MyListItem } from './MyListItem';
+import { ListItem } from './ListItem';
 
 
-const Template = (args: any) => <MyListItem {...args} />;
+const Template = (args: any) => <ListItem {...args} />;
 
 export const Primary = Template.bind({});
 Primary.args = {
@@ -23,5 +23,5 @@ Secondary.args = {
 };
 
 export default {
-    title: 'Core/MyListItem',
+    title: 'Core/ListItem',
 }
