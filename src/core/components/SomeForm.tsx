@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 
-const FormStyle = styled.label`
+const FormStyle = styled.form`
 color: red;
 background-color: black;
 border: 1px solid;
