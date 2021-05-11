@@ -4,36 +4,37 @@ import { PlaylistsView } from './playlists/containers/PlaylistsView';
 // npm i bootstrap
 import 'bootstrap/dist/css/bootstrap.css'
 import { MusicSearchView } from './music-search/containers/MusicSearchView';
+import { UserView } from './user/containers/UserView';
+
 
 // npm i --save-dev @types/react-router
 import { Redirect, Route, Switch } from 'react-router'
 import { NavBar } from './core/components/NavBar';
 import PlaylistTracks from './playlists/containers/PlaylistTracks';
-import { SomeForm } from './core/components/SomeForm';
 
 function App() {
   return (
     <div>
-      <SomeForm />
 
-      {/* <NavBar/>
+      <NavBar />
       {/* .container>.row>.col */}
-      {/* <div className="container">
+      <div className="container">
         <div className="row">
-          <div className="col"> */}
+          <div className="col">
 
-      {/* <Switch>
+            <Switch>
               <Redirect path="/" exact={true} to="/playlists" />
               <Route path="/playlists/:playlist_id/" component={PlaylistsView} />
               <Route path="/playlists/" component={PlaylistsView} />
               <Route path="/tracks/" component={PlaylistTracks} />
               <Route path="/search" component={MusicSearchView} />
+              <Route path="/user" component={UserView} />
               <Route path="*" render={() => <h1>Page Not Found</h1>} />
-            </Switch> */}
+            </Switch>
 
-      {/* </div>
+          </div>
         </div>
-      </div> */}
+      </div>
     </div>
   );
 }
