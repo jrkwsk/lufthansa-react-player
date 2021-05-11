@@ -9,28 +9,31 @@ import { MusicSearchView } from './music-search/containers/MusicSearchView';
 import { Redirect, Route, Switch } from 'react-router'
 import { NavBar } from './core/components/NavBar';
 import PlaylistTracks from './playlists/containers/PlaylistTracks';
+import { SomeForm } from './core/components/SomeForm';
 
 function App() {
   return (
     <div>
-      <NavBar/>
-      {/* .container>.row>.col */}
-      <div className="container">
-        <div className="row">
-          <div className="col">
+      <SomeForm />
 
-            <Switch>
+      {/* <NavBar/>
+      {/* .container>.row>.col */}
+      {/* <div className="container">
+        <div className="row">
+          <div className="col"> */}
+
+      {/* <Switch>
               <Redirect path="/" exact={true} to="/playlists" />
               <Route path="/playlists/:playlist_id/" component={PlaylistsView} />
               <Route path="/playlists/" component={PlaylistsView} />
               <Route path="/tracks/" component={PlaylistTracks} />
               <Route path="/search" component={MusicSearchView} />
               <Route path="*" render={() => <h1>Page Not Found</h1>} />
-            </Switch>
+            </Switch> */}
 
-          </div>
+      {/* </div>
         </div>
-      </div>
+      </div> */}
     </div>
   );
 }
