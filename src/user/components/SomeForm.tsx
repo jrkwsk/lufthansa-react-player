@@ -26,10 +26,8 @@ interface Props {
 
 export const SomeForm = (props: Props) => {
 
+    //to jest ten callback z hooka
     const signup = () => {
-        alert(`User Created!
-               Name: ${inputs.firstName} ${inputs.lastName}
-               Email: ${inputs.email}`);
     }
     const { inputs, handleInputChange, handleSubmit } = useForm(signup);
 
